@@ -3,4 +3,5 @@ members = [
     'app',
     'client',
     'server',
+    'shared',
 ]
