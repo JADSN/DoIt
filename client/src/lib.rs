@@ -18,12 +18,8 @@ pub async fn entrypoint() -> Result<(), std::io::Error> {
         api.at("/").get(crate::api::read_all::presenter::read_all);
         api.at("/")
             .post(crate::api::insert_one::presenter::insert_one);
-        api.at("/:id").put(|_| async {
-            Ok(json!({
-                "status": "UPDATED",
-
-            }))
-        });
+        api.at("/:id")
+            .put(crate::api::update_one::presenter::update_one);
         api.at("/:id").delete(|_| async {
             Ok(json!({
                 "status": "DELETED",
