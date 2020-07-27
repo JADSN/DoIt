@@ -1,4 +1,3 @@
-use tide::prelude::*;
 use tide::Redirect;
 
 // * INTERNAL MODULES
@@ -13,6 +12,7 @@ pub async fn entrypoint() -> Result<(), std::io::Error> {
     app.at("/").get(Redirect::new("/static/index.html"));
     app.at("/static").serve_dir("client/static/")?;
 
+    // * API
     app.at("/api").nest({
         let mut api = tide::new();
         api.at("/").get(crate::api::read_all::presenter::read_all);
@@ -20,12 +20,8 @@ pub async fn entrypoint() -> Result<(), std::io::Error> {
             .post(crate::api::insert_one::presenter::insert_one);
         api.at("/:id")
             .put(crate::api::update_one::presenter::update_one);
-        api.at("/:id").delete(|_| async {
-            Ok(json!({
-                "status": "DELETED",
-
-            }))
-        });
+        api.at("/:id")
+            .delete(crate::api::delete_one::presenter::delete_one);
         api
     });
 

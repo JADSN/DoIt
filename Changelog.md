@@ -18,3 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.4.0] - 2020-07-27
 ### Added
 - CRUD - UPDATE_ONE - BACKEND
+
+## [0.5.0] - 2020-07-27
+### Added
+- CRUD - DELETE - BACKEND
