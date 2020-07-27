@@ -1,8 +1,10 @@
-#[async_std::main]
-async fn main() -> std::io::Result<()> {
+// #[async_std::main]
+fn main() {
     // * INIT SERVER
     server::entrypoint().unwrap();
 
     // * INIT CLIENT
-    Ok(client::entrypoint().await?)
+    termcli::entrypoint();
+
+    // Ok(client::entrypoint().await?)
 }

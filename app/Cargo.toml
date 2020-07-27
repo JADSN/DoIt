@@ -1,14 +1,10 @@
 [package]
 name = 'app'
-version = '0.5.0'
+version = '0.6.0'
 authors = ['JADSN <jadsn1894@gmail.com>']
 edition = '2018'
-[dependencies.async-std]
-version = '1.6.2'
-features = ['attributes']
-
-[dependencies.client]
-path = '../client'
+[dependencies.termcli]
+path = '../termcli'
 
 [dependencies.server]
 path = '../server'

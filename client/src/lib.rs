@@ -1,11 +1,12 @@
+use async_std::task;
 use tide::Redirect;
-
 // * INTERNAL MODULES
 mod api;
 
 // ! ENTRYPOINT
-pub async fn entrypoint() -> Result<(), std::io::Error> {
+pub fn entrypoint() -> Result<(), std::io::Error> {
     tide::log::start();
+
     let mut app = tide::new();
 
     // * STATIC FILES
@@ -25,7 +26,8 @@ pub async fn entrypoint() -> Result<(), std::io::Error> {
         api
     });
 
-    app.listen("0.0.0.0:8080").await?;
-
-    Ok(())
+    task::block_on(async {
+        app.listen("0.0.0.0:8080").await?;
+        Ok(())
+    })
 }

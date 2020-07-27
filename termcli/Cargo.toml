@@ -1,0 +1,18 @@
+[package]
+name = 'termcli'
+version = '0.6.0'
+authors = ['JADSN <jadsn1894@gmail.com>']
+edition = '2018'
+
+[dependencies]
+clap = '2.33.1'
+cli-table = '0.3.1'
+
+[dependencies.client]
+path = '../client'
+
+[dependencies.server]
+path = '../server'
+
+[dependencies.shared]
+path = '../shared'
