@@ -10,7 +10,7 @@ pub async fn entrypoint() -> Result<(), std::io::Error> {
 
     // * STATIC FILES
     app.at("/").get(Redirect::new("/static/index.html"));
-    app.at("/static").serve_dir("client/static/")?;
+    app.at("/static").serve_dir("static/")?;
 
     // * API
     app.at("/api").nest({
