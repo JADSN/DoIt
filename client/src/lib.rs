@@ -16,12 +16,8 @@ pub async fn entrypoint() -> Result<(), std::io::Error> {
     app.at("/api").nest({
         let mut api = tide::new();
         api.at("/").get(crate::api::read_all::presenter::read_all);
-        api.at("/").post(|_| async {
-            Ok(json!({
-                "status": "CREATED",
-
-            }))
-        });
+        api.at("/")
+            .post(crate::api::insert_one::presenter::insert_one);
         api.at("/:id").put(|_| async {
             Ok(json!({
                 "status": "UPDATED",
