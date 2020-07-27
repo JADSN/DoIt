@@ -1,0 +1,14 @@
+[package]
+name = 'app'
+version = '0.1.0'
+authors = ['JADSN <jadsn1894@gmail.com>']
+edition = '2018'
+[dependencies.async-std]
+version = '1.6.2'
+features = ['attributes']
+
+[dependencies.client]
+path = '../client'
+
+[dependencies.server]
+path = '../server'
