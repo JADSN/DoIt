@@ -6,73 +6,37 @@ const initialState = () => {
 }
 
 const initialStateModel = () => {
-    return {
-        "h1_text": "To Do List",
-        "btn_text": "Submit",
-        "input_text": "Add To Do"
-    }
+    return {}
 }
 
 const initialStateView = (obj) => {
-    const { h1_text, btn_text, input_text } = obj
-    const elements = ["h1", "div", "form", "input", "button"]
-
-    // CREATE THE ELEMENTS
-    const html = arr => arr.map(element => document.createElement(element))
-
-    // SET THE ATTRIBUTES INTO THE ELEMENTS
-    const att = (element, name, value) => element.setAttribute(name, value)
-
-    // APPEND THE ELEMENTS OR TEXTNODE INTO PARENT
-    const append = (parent, child) => parent.appendChild(child)
-
-    const [h1, div, form, input, button] = html(elements)
-
-    // CREATE THE TEXT-NODE OF THE ELEMENTS
-    const h1Text = document.createTextNode(h1_text)
-    const buttonText = document.createTextNode(btn_text)
-
-    append(h1, h1Text)
-    append(button, buttonText)
-
-    att(div, "id", "entry-point")
-    att(input, "type", "text")
-    att(input, "placeholder", input_text)
-    att(input, "name", "todo")
-    att(input, "id", "input-add-todo")
-    att(button, "id", "btn-add-todo")
-
-    append(form, input)
-    append(form, button)
-
-    const arrayElements = [h1, form, div]
-
-    return arrayElements
+    return `<div class="container">
+                <form>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+            `
 }
 
 const initialStatePresenter = () => {
     const model = initialStateModel()
     const view = initialStateView(model)
 
-    view.forEach(element => {
-        document.querySelector("div#root").appendChild(element)
-    })
-
-    document.querySelector("form").addEventListener("submit", event => {
-        event.preventDefault()
-
-        const inputValue = document.querySelector("input#input-add-todo").value
-
-        if (!inputValue.length) {
-            //! TODO: criar snackbar or toast
-            alert("Please, digit some To Do")
-        } else {
-            const answers = {"description": inputValue}
-            todoPost(answers)
-        }
-    })
-
-    renderTodo()
+    document.querySelector("div#root").innerHTML = view
+   
 }
 
 
