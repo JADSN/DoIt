@@ -7,15 +7,15 @@ const updateStatusView = (obj) => {
 }
 
 const updateStatusModel = (answers) => {
-    const { id, status } = answers
-    
-    return fetch(`/todos/status/${id}`, {
-        method: 'PATCH',
+    const { id } = answers
+    console.log(answers) 
+    return fetch(`/api/${id}`, {
+        method: 'PUT',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"status": status})
+        body: JSON.stringify(answers)
     }).then(respone => respone.status)
 }
 

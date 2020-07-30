@@ -3,38 +3,36 @@
 }
 
 .modal {
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Transparent dimmed overlay */
     position: fixed;
-    z-index: 1;
-    padding-top: 100px;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    display: table;
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 30%;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+.modal.hidden {
+    display: none;
 }
 
-.close {
-    color: #aaaaaa;
-    font-size: 28px;
-    font-weight: bold;
-    align-self: flex-start;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.modal .container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    width: 200px;
+}
+
+.modal .body-modal {
+    display: inline-block;
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.modal-body {
+    width: 400px;
+    height: 150px;
+}

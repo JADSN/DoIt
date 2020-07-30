@@ -1,5 +1,4 @@
 import renderTodo from '../render_list/index.js'
-// import lastTodo from '../last_todo/index.js'
 
 const todoPost = (answers) => todoPostPresenter(answers)
 
@@ -8,7 +7,7 @@ const todoPostView = (obj) => {
 }
 
 const todoPostModel = (answers) => {
-    return fetch("/todos", {
+    return fetch("/api", {
         method: "POST",
         headers: {
             "Accept": "application/json",
@@ -23,11 +22,7 @@ const todoPostPresenter = async (answers) => {
     const view = todoPostView(model)
     console.log(view)
     if(view === "200") {
-
-        //! Criar função para renderizar somente o último todo
         renderTodo()
-        // lastTodo()
-        document.querySelector("input#input-add-todo").value = ""
     } else {
         //! TODO: criar snackbar or toast
         alert("Verifique a sua conexão!")

@@ -7,7 +7,7 @@ const deleteTodoView = (obj) => {
 }
 
 const deleteTodoModel = async (answers) => {
-    return await fetch(`/todos/delete/${answers}`, {
+    return await fetch(`/api/${answers}`, {
         method: "DELETE"
     }).then(response => response.status)
 }
