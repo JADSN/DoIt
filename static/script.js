@@ -37,7 +37,7 @@ const initialTemplatePresenter = () => {
         const inputValue = document.querySelector("input[type=text]").value 
         const answers = {
             description: inputValue,
-            done: true
+            done: false
         }
         todoPost(answers)
         document.querySelector("input[type=text]").value = ""
