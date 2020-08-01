@@ -1,7 +1,7 @@
 [workspace]
 members = [
     'app',
-    'client',
+    'www',
     'server',
     'termcli',
     'shared',

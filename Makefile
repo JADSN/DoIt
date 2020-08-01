@@ -1,5 +1,5 @@
-bintarget = ./target/release/app
-cmd = cargo build --release -p app && strip $(bintarget) && $(bintarget)
+bintarget = ./target/x86_64-unknown-linux-musl/release/app
+cmd = cargo build --release --target=x86_64-unknown-linux-musl -p app && strip $(bintarget) && $(bintarget)
 
 app_cli = doit
 
@@ -30,8 +30,9 @@ help:
 binsize:
 	ls -lh $(bintarget)
 
-dist:
-	mkdir -p dist
-	cp -R ./static ./dist/.
-	cp $(bintarget) ./dist/.
+dist_to_deploy:
+	rm -rfv ./dist
+	mkdir dist
+	cp -vR ./static ./dist/.
+	cp -v $(bintarget) ./dist/.
 	cd ./dist && ./app $(app_cli) server

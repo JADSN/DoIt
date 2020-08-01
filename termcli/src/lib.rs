@@ -9,7 +9,7 @@ use clap::{
 // * [server|all|insert_one|update_one|delete_one]
 fn dispatcher(subcommand_param: (&str, Option<&ArgMatches>)) {
     match subcommand_param.0 {
-        "server" => client::entrypoint().unwrap(),
+        "server" => www::entrypoint().unwrap(),
         "all" => cli::read_all::presenter::handler(),
         "insert_one" => cli::insert_one::presenter::handler(subcommand_param.1),
         "update_one" => cli::update_one::presenter::handler(subcommand_param.1),
