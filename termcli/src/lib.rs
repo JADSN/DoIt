@@ -12,7 +12,10 @@ fn dispatcher(subcommand_param: (&str, Option<&ArgMatches>)) {
         "server" => www::entrypoint().unwrap(),
         "all" => cli::read_all::presenter::handler(),
         "insert_one" => cli::insert_one::presenter::handler(subcommand_param.1),
-        "update_one" => cli::update_one::presenter::handler(subcommand_param.1),
+        "update_todo_done" => cli::update_one::done::presenter::handler(subcommand_param.1),
+        "update_todo_description" => {
+            cli::update_one::description::presenter::handler(subcommand_param.1)
+        }
         "delete_one" => cli::delete_one::presenter::handler(subcommand_param.1),
         _ => std::process::exit(0),
     }
@@ -54,8 +57,30 @@ fn mount_cli() -> ArgMatches<'static> {
                 ),
         )
         .subcommand(
-            SubCommand::with_name("update_one")
-                .about("Update one item in table todos")
+            SubCommand::with_name("update_todo_done")
+                .about("Update todo done of specifig identifier")
+                .arg(
+                    Arg::with_name("id")
+                        .short("i")
+                        .min_values(1)
+                        .max_values(1)
+                        .value_name("INTEGER")
+                        .required(true)
+                        .help("Id of task"),
+                )
+                .arg(
+                    Arg::with_name("done")
+                        .short("o")
+                        .min_values(1)
+                        .max_values(1)
+                        .value_name("BOOLEAN")
+                        .required(true)
+                        .help("Done of task"),
+                ),
+        )
+        .subcommand(
+            SubCommand::with_name("update_todo_description")
+                .about("Update todo description of specifig identifier")
                 .arg(
                     Arg::with_name("id")
                         .short("i")
@@ -73,15 +98,6 @@ fn mount_cli() -> ArgMatches<'static> {
                         .value_name("STRING")
                         .required(true)
                         .help("Description of task"),
-                )
-                .arg(
-                    Arg::with_name("done")
-                        .short("o")
-                        .min_values(1)
-                        .max_values(1)
-                        .value_name("BOOLEAN")
-                        .required(true)
-                        .help("Done of task"),
                 ),
         )
         .subcommand(

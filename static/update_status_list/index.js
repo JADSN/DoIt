@@ -8,7 +8,7 @@ const updateStatusView = (obj) => {
 
 const updateStatusModel = (answers) => {
     const { id } = answers
-    console.log(answers) 
+    console.log(answers)
     return fetch(`/api/${id}`, {
         method: 'PUT',
         headers: {
@@ -23,7 +23,7 @@ const updateStatusPresenter = async (answers) => {
     const model = await updateStatusModel(answers)
     const view = updateStatusView(model)
 
-    if(view === "200") {
+    if (view === "200") {
         renderTodo()
     }
 }

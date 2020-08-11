@@ -18,8 +18,14 @@ read_all:
 insert_one:
 	$(cmd) $(app_cli) insert_one -d "SOME DESCRIPTION" -o "true"
 
-update_one:
-	$(cmd) $(app_cli) update_one -i "5" -d "UPDATED" -o "true"
+# update_one:
+# 	$(cmd) $(app_cli) update_one -i "5" -d "UPDATED" -o "true"
+
+update_todo_done:
+	$(cmd) $(app_cli) update_todo_done -i "3" -o "true"
+
+update_todo_description:
+	$(cmd) $(app_cli) update_todo_description -i "3" -d "LA BOLICHA"
 
 delete_one:
 	$(cmd) $(app_cli) delete_one -i "2"

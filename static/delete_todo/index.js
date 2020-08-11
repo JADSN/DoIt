@@ -16,10 +16,10 @@ const deleteTodoPresenter = async (answers) => {
     const model = await deleteTodoModel(answers)
     const view = deleteTodoView(model)
 
-    if(view === "200") {
+    if (view === "200") {
         renderTodo()
     }
-    
+
 }
 
 export default deleteTodo

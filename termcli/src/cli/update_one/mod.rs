@@ -1,4 +1,2 @@
-mod model;
-mod view;
-
-pub mod presenter;
+pub mod description;
+pub mod done;

@@ -16,7 +16,7 @@ const renderTodoView = (obj) => {
         template += `<li class="list-group-item ${element.done === true ? "line_through" : ""}" role="${element.id}"><input type="checkbox" class="mr-2" ${element.done === true ? "checked" : ""}/>${element.description}<button class="btn btn-danger float-right ml-3 deletar">Deletar</button><button class="btn btn-warning float-right editar">Editar</button></li>`
     })
 
-  
+
     return template
 }
 
@@ -64,9 +64,9 @@ const renderTodoPresenter = async () => {
                 id: target.parentElement.getAttribute("role"),
                 "description": target.parentElement.childNodes[1].textContent,
                 done
-              }
-              updateStatus(answers)
-              
+            }
+            updateStatus(answers)
+
         })
     })
 

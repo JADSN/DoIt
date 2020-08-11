@@ -1,13 +1,25 @@
-use shared::todo_update::TodoUpdate;
+use shared::todo_update::Update;
+
 use tide::Request;
 
-pub async fn update_one(mut req: Request<()>) -> Result<(), String> {
-    let id: u8 = req.param("id").unwrap_or(0);
-    match req.body_json::<TodoUpdate>().await {
-        Ok(data) => match server::database::update_one::presenter::update_one(data, id) {
-            Ok(_) => Ok(()),
-            Err(error) => Err(error.to_string()),
-        },
+pub async fn update_done(mut req: Request<()>) -> Result<(), String> {
+    match req.body_json::<Update>().await {
+        Ok(data) => {
+            if data.col_name.eq(&"done") && data.new_value.is_boolean() {
+                match server::database::update_one::done::presenter::update(data) {
+                    Ok(_) => Ok(()),
+                    Err(error) => Err(error.to_string()),
+                }
+            } else if data.col_name.eq(&"description") && data.new_value.is_string() {
+                match server::database::update_one::description::presenter::update(data) {
+                    Ok(_) => Ok(()),
+                    Err(error) => Err(error.to_string()),
+                }
+            } else {
+                Ok(())
+            }
+        }
+
         Err(error) => Err(error.to_string()),
     }
 }

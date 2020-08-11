@@ -1,12 +1,13 @@
 [package]
 name = 'termcli'
-version = '0.6.1'
+version = '0.7.0'
 authors = ['JADSN <jadsn1894@gmail.com>']
 edition = '2018'
 
 [dependencies]
-clap = '2.33.1'
+clap = '2.33.2'
 cli-table = '0.3.1'
+serde_json = '1.0.57'
 
 [dependencies.www]
 path = '../www'

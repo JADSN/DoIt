@@ -32,3 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - client to www
 - target to musl
 - update resources
+
+## [0.7.0] - 2020-08-11
+### Changed
+- method - PUT to PATCH
